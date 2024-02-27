@@ -6,10 +6,20 @@ const keyboard = [
     ['Z','X','C','V','B','N','M']
 ];
 </script>
+<script>
+export default {
+    props: {
+        inputValue: String,
+    },
+    updated () {
+        
+    }
+}
+</script>
 <template>
     <div class="wrapper">
         <div class="row" v-for="keys in keyboard">
-            <Key v-for="key in keys" v-slot:val>
+            <Key v-for="key in keys" v-slot:val :id=key :class="{typed: inputValue.toUpperCase()==key}" >
                 {{ key }}
             </Key>
         </div>
@@ -19,9 +29,9 @@ const keyboard = [
 .row {
     display: flex;
     flex-direction: row;
+    gap: .6rem;
 }
 .row * {
-    margin-right: .5rem;
-    margin-top: .4rem;
+    margin-top: .5rem;
 }
 </style>

@@ -4,23 +4,24 @@ export default {
   props: {
     inputValue: String,
   },
-  setup(props) {
-    console.log(props.inputValue)
-  },
   data: () => {
     displayText: []
   },
   created () {
-    this.displayText = [...generate(30).join(' ')];
+    this.displayText = [...generate(30).join(' ')].map((item, index) => [index, item]);
     console.log(this.displayText)
-    console.log(this.props)
+    // console.log(this.props)
   },
+  updated () {
+    // console.log(this.inputValue)
+  }
 }
 </script>
 <template>
     <div class="screen">
-        {{ displayText.join('') }}
-        {{ inputValue }}
+        <span class="word" v-for="[index, character] in displayText" :class="correct">
+          {{ character }}
+        </span>
     </div>
 </template>
 <style scoped>

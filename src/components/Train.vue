@@ -9,9 +9,9 @@ export default {
   }),
   methods: {
     onType: function(e) {
-      this.inputValue = e.target.value;
+      this.inputValue = e.target.value.replace(/[^a-zA-Z]+/g, '');
       console.log(this.inputValue);
-    }
+    },
   },
   mounted () {
     this.$nextTick(() => this.$refs.userInput.focus())
@@ -22,8 +22,7 @@ export default {
   <div class="wrapper">
     <Screen :inputValue=inputValue />
     <input ref="userInput" @blur="$refs.userInput.focus()" @input="onType">
-    <Keyboard />
-    {{ inputValue }}
+    <Keyboard :inputValue=inputValue.slice(-1) />
   </div>
 </template>
 
